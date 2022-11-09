@@ -1,0 +1,8 @@
+:80 {
+    reverse_proxy {$ENDPOINT_LIST:localhost} {
+        lb_policy   least_conn
+		fail_duration   180s
+		unhealthy_latency   1.5s
+		unhealthy_status    5xx
+	}
+}
