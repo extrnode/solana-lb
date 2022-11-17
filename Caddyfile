@@ -1,8 +1,13 @@
 :80 {
-    reverse_proxy {$ENDPOINT_LIST:localhost} {
-        lb_policy   least_conn
-		fail_duration   180s
-		unhealthy_latency   1.5s
-		unhealthy_status    5xx
-	}
+        reverse_proxy {$ENDPOINT_LIST:localhost} {
+                lb_policy least_conn
+		health_uri /health
+		health_interval 60s
+		health_timeout 3s
+		health_body ok
+                fail_duration 60s
+		max_fails 3
+                unhealthy_latency 1.5s
+                unhealthy_status 5xx
+        }
 }
