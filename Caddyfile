@@ -1,13 +1,21 @@
 :80 {
-        reverse_proxy {$ENDPOINT_LIST:localhost} {
+        reverse_proxy {$UPSTREAMS_LIST:localhost} {
                 lb_policy least_conn
-		health_uri /health
-		health_interval 60s
-		health_timeout 3s
-		health_body ok
-                fail_duration 60s
-		max_fails 3
+                health_uri /health
+                health_interval 60s
+                health_timeout 3s
+                health_body ok
+                fail_duration 120s
+                max_fails 3
                 unhealthy_latency 1.5s
                 unhealthy_status 5xx
+        }
+        log {
+                output stdout
+                format console {
+                        time_format common_log
+                        time_local
+                }
+                level INFO
         }
 }
