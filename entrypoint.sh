@@ -9,9 +9,8 @@ NC='\e[1;0m'
 
 UPSTREAMS_UPDATE_INTERVAL=3600
 UPSTREAMS_NUMBER=30
-LOWER_UPSTREAMS_NUMBER_LIMIT=3
-UPSTREAMS_RESPONSE_FORMAT="haproxy"
-UPSTREAMS_API_URL="https://api.extrnode.com/endpoints?limit=${UPSTREAMS_NUMBER}&format=${UPSTREAMS_RESPONSE_FORMAT}&node_type=full_rpc"
+LOWER_UPSTREAMS_NUMBER_LIMIT=7
+UPSTREAMS_API_URL="https://api.extrnode.com/endpoints?limit=${UPSTREAMS_NUMBER}&format=${UPSTREAMS_RESPONSE_FORMAT}&is_rpc=true"
 FULL_REQUEST_BODY="wget -qO- ${UPSTREAMS_API_URL}"
 
 get_upstreams_list () {
